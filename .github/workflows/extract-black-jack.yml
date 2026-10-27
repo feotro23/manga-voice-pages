@@ -7,13 +7,10 @@ on:
     inputs:
       first:
         description: First PDF page to export
-        default: "1"
+        default: "3"
       last:
         description: Last PDF page to export
-        default: "70"
-  push:
-    paths:
-      - .github/workflows/extract-black-jack.yml
+        default: "58"
 
 permissions:
   contents: write
@@ -32,8 +29,8 @@ jobs:
 
       - name: Render pages to JPEG
         env:
-          FIRST: ${{ github.event.inputs.first || '1' }}
-          LAST: ${{ github.event.inputs.last || '70' }}
+          FIRST: ${{ github.event.inputs.first || '3' }}
+          LAST: ${{ github.event.inputs.last || '58' }}
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
           mkdir -p black-jack/vol01
