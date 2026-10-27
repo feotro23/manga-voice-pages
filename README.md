@@ -19,3 +19,12 @@ Page images used as sample data by **Manga Voice**, a Power Apps course project 
 ## Pepper&Carrot, by David Revoy
 
 Not stored here. The app loads its pages straight from <https://www.peppercarrot.com> ("Pepper&Carrot by David Revoy, www.peppercarrot.com", [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)).
+
+## Sample data (`data/seed.json`)
+
+The rows the app's Excel workbook is loaded with: series, chapters, pages, characters, voice lines and sample reader activity. An Office Script in the workbook reads this file and writes the rows into its tables.
+
+- Pepper&Carrot lines follow the official English transcripts (CC BY 4.0, David Revoy).
+- Ubunchu! lines follow the English edition by Tarek Saier and PublicDesert, lightly copy-edited (CC BY-NC-SA 4.0).
+- Give My Regards to Black Jack lines are an adaptation written for this project, not the printed English text, under the free secondary use terms for SHUHO SATO's work.
+- Sample accounts and their emails are made up (example.com). The three credit accounts are not run by the artists.
