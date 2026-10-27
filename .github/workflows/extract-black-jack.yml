@@ -1,0 +1,53 @@
+# Downloads Sato Manga Works' free English data for "Give My Regards to Black Jack" volume 1
+# from https://densho810.com/free/ (the only source the terms allow) and commits page images.
+name: Extract Give My Regards to Black Jack pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      first:
+        description: First PDF page to export
+        default: "1"
+      last:
+        description: Last PDF page to export
+        default: "70"
+  push:
+    paths:
+      - .github/workflows/extract-black-jack.yml
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download English volume 1 (Sato Manga Works free data)
+        run: curl -fL --retry 3 -o enbj001.zip https://densho810.com/free/dl/enbj001.zip
+
+      - name: Unzip the PDF
+        run: unzip -o enbj001.zip enbj001.pdf && rm enbj001.zip
+
+      - name: Render pages to JPEG
+        env:
+          FIRST: ${{ github.event.inputs.first || '1' }}
+          LAST: ${{ github.event.inputs.last || '70' }}
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+          mkdir -p black-jack/vol01
+          pdfinfo enbj001.pdf > black-jack/vol01/pdfinfo.txt
+          cat black-jack/vol01/pdfinfo.txt
+          pdftoppm -f "$FIRST" -l "$LAST" -jpeg -jpegopt quality=80 -scale-to-y 1200 -scale-to-x -1 enbj001.pdf black-jack/vol01/page
+          ls -la black-jack/vol01 | head -100
+          rm enbj001.pdf
+
+      - name: Commit the pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add black-jack
+          git commit -m "Give My Regards to Black Jack vol. 1 pages (English, Sato Manga Works free data)" || echo "nothing to commit"
+          git pull --rebase
+          git push
