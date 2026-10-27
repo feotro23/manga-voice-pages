@@ -1,0 +1,19 @@
+Title:           
+Creator:         Adobe Acrobat 25.1
+Producer:        Adobe Acrobat 25.1 Image Conversion Plug-in
+CreationDate:    Thu Mar 20 01:11:45 2025 UTC
+ModDate:         Thu Mar 20 01:11:45 2025 UTC
+Custom Metadata: no
+Metadata Stream: yes
+Tagged:          no
+UserProperties:  no
+Suspects:        no
+Form:            none
+JavaScript:      no
+Pages:           209
+Encrypted:       no
+Page size:       1414 x 2000 pts
+Page rot:        0
+File size:       419481819 bytes
+Optimized:       yes
+PDF version:     1.6
